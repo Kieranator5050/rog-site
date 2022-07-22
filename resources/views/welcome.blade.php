@@ -23,38 +23,23 @@
         </style>
     </head>
     <body class="antialiased font-sans text-gray-900 antialiased">
-            <x-jet-authentication-card>
-                <x-slot name="logo">
+            <div class="flex items-center justify-center h-screen">
+                <div>
                     <img src="{{ asset('/images/roglogo.png') }}" class="p-6 mr-2" width="210px">
-                </x-slot>
+                </div>
                 @if (Route::has('login'))
-
                         @auth
                             <div>
                                 <h2 class="text-xl">Welcome Back!</h2>
                                 <p class="text-lg">Head to the <a href="{{ url('/dashboard') }}" class="text-gray-700 dark:text-gray-500 underline">Dashboard</a> here</p>
                             </div>
-                            <div>
-
-                            </div>
-
                         @else
-                            <div>
+                            <div class="bg-gray-100 p-14 shadow-lg">
                                 <h2 class="text-xl">Welcome</h2>
                                 <p class="text-lg"><a href="{{ route('login') }}" class="text-gray-700 dark:text-gray-500 underline">Log in</a> or <a href="{{ route('register') }}" class="text-gray-700 dark:text-gray-500 underline">Register</a> here</p>
-                                <div class="flex">
-                                    <h3></h3>
-                                    @if (Route::has('register'))
-                                        <h3></h3>
-                                    @endif
-                                </div>
-
                             </div>
-
                         @endauth
-                    </div>
                 @endif
-
-            </x-jet-authentication-card>
+            </div>
     </body>
 </html>

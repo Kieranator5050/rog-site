@@ -11,6 +11,10 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
+            <div class="bg-gray-100 border-amber-600 text-center">
+                <h3 class="font-extrabold">Username Guidelines</h3>
+            </div>
+
             <div>
                 <x-jet-label for="username" value="{{ __('Username') }}" />
                 <x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
