@@ -11,8 +11,20 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div class="bg-gray-100 border-amber-600 text-center">
-                <h3 class="font-extrabold">Username Guidelines</h3>
+            <div class="bg-gray-100 border-amber-600 text-center rounded-lg p-6">
+                <h3 class="font-extrabold text-xl">USER GUIDELINES</h3>
+                <div class="bg-red-600 p-2 rounded-md text-white text-sm">
+                    <h4 class="font-semibold underline underline-offset-2">NOTE</h4>
+                    <p class=""> Join discord <a href="https://discord.gg/szzH2GPh2X"><i class="fa-brands fa-discord text-white bg-blue-400 rounded-lg p-1"></i></a> to complete your registration or your account <em class="font-extrabold">will be deleted</em></p>
+                </div>
+                <div class="p-2 mt-2 rounded-md text-sm">
+                    <h4 class="font-semibold">NAME & PROFILE PICTURE GUIDELINES</h4>
+                    <ul class="text-xs list-disc text-left">
+                        <li>Absolutely no offensive names or pictures are to be used.</li>
+                        <li>Keep your name short and easily pronounceable</li>
+                        <li>Ensure your in game arma name matches with your discord name</li>
+                    </ul>
+                </div>
             </div>
 
             <div>

@@ -16,6 +16,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://kit.fontawesome.com/75652bcbf3.js" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
