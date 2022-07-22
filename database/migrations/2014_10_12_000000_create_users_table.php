@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('isAdmin')->default(0);
             $table->boolean('isTeamLead')->default(0);
             $table->boolean('isQuartermaster')->default(0);
+            $table->boolean('isMissionMaker')->default(0);
             $table->boolean('isActive')->default(1);
             $table->boolean('isLocked')->default(0);
             $table->rememberToken();
