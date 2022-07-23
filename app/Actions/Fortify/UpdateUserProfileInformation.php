@@ -22,7 +22,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'uid' => ['integer'],
+            'uid' => ['integer','nullable'],
             'discord_id'=>[Rule::unique('users'),'nullable','regex:/^.{3,32}#[0-9]{4}$/m']
         ])->validateWithBag('updateProfileInformation');
 
