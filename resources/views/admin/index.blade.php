@@ -12,25 +12,26 @@
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-2">
-                                <table class="min-w-full divide-y divide-gray-200 table-auto">
+                                <h1 class="text-3xl text-center mb-4 mt-4 font-extrabold">USER TABLE</h1>
+                                <table class="min-w-full divide-y divide-gray-200 table-auto border-collapse border border-grey-500">
                                     <thead>
                                         <tr>
-                                            <th>Username</th>
-                                            <th>UID</th>
-                                            <th>Ops</th>
-                                            <th>Balance</th>
-                                            <th>Active</th>
-                                            <th>Locked</th>
-                                            <th>isAdmin</th>
-                                            <th>isTL</th>
-                                            <th>isQM</th>
-                                            <th>isMM</th>
+                                            <th class="border border-gray-300">Username</th>
+                                            <th class="border border-gray-300">UID</th>
+                                            <th class="border border-gray-300">Ops</th>
+                                            <th class="border border-gray-300">Balance</th>
+                                            <th class="border border-gray-300">Active</th>
+                                            <th class="border border-gray-300">Locked</th>
+                                            <th class="border border-gray-300">Admin</th>
+                                            <th class="border border-gray-300">TL</th>
+                                            <th class="border border-gray-300">QM</th>
+                                            <th class="border border-gray-300">MM</th>
                                         </tr>
                                     </thead>
                                     <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach ($users as $user)
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
                                                         <p>{{ $user->username }}</p>
@@ -38,7 +39,7 @@
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
                                                         <p>{{ $user->uid }}</p>
@@ -46,7 +47,7 @@
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
                                                         <p>{{ $user->opCount }}</p>
@@ -54,7 +55,7 @@
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
                                                         <p>{{ $user->balance }}</p>
@@ -64,60 +65,60 @@
 
                                             @php
                                                 $tfArray = [
-                                                    0=>'False',
-                                                    1=>'True'
+                                                    0=>'<i class="fa-solid fa-xmark text-red-500"></i>',
+                                                    1=>'<i class="fa-solid fa-check text-green-500"></i>'
                                                     ]
                                             @endphp
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $tfArray[$user->isActive] }}</p>
+                                                        <p>{!! $tfArray[$user->isActive] !!}</p>
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $tfArray[$user->isLocked] }}</p>
+                                                        <p>{!! $tfArray[$user->isLocked] !!}</p>
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $tfArray[$user->isAdmin] }}</p>
+                                                        <p>{!! $tfArray[$user->isAdmin] !!}</p>
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $tfArray[$user->isTeamLead] }}</p>
+                                                        <p>{!! $tfArray[$user->isTeamLead] !!}</p>
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $tfArray[$user->isQuartermaster] }}</p>
+                                                        <p>{!! $tfArray[$user->isQuartermaster] !!}</p>
                                                     </div>
                                                 </div>
                                             </td>
 
-                                            <td class="px-6 py-4 whitespace-nowrap">
+                                            <td class="px-6 py-4 whitespace-nowrap ">
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $tfArray[$user->isMissionMaker] }}</p>
+                                                        <p>{!! $tfArray[$user->isMissionMaker] !!}</p>
                                                     </div>
                                                 </div>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                <a href="/admin/user/{{ $user->id }}/delete" class="text-blue-500 hover:text-blue-600">Edit</a>
+                                                <a href="/admin/user/{{ $user->id }}" class="text-blue-500 hover:text-blue-600">Edit</a>
                                             </td>
 
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
