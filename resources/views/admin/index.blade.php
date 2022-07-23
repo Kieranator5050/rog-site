@@ -17,6 +17,7 @@
                                     <thead>
                                         <tr>
                                             <th class="border border-gray-300">Username</th>
+                                            <th class="border border-gray-300">Discord ID</th>
                                             <th class="border border-gray-300">UID</th>
                                             <th class="border border-gray-300">Ops</th>
                                             <th class="border border-gray-300">Balance</th>
@@ -35,6 +36,14 @@
                                                 <div class="flex items-center">
                                                     <div class="text-sm font-medium text-gray-900">
                                                         <p>{{ $user->username }}</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                            <td class="px-6 py-4 whitespace-nowrap ">
+                                                <div class="flex items-center">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        <p>{{ $user->discord_id }}</p>
                                                     </div>
                                                 </div>
                                             </td>
