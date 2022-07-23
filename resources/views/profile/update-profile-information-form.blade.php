@@ -81,6 +81,9 @@
                 @endif
             @endif
         </div>
+
+        <x-form-input field="uid" label="Arma 3 UID"></x-form-input>
+        <x-form-input field="discord_id" label="Discord Username (Eg. JohnDoe#1234)"></x-form-input>
     </x-slot>
 
     <x-slot name="actions">

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::table('Users', function (Blueprint $table) {
             $table->foreignId('team_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('rank_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('discord_id')->nullable()->unique();
         });
     }
 

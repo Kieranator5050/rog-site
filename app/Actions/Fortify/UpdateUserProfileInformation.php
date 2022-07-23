@@ -22,6 +22,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'uid' => ['integer'],
+            'discord_id'=>[Rule::unique('users'),'nullable','regex:/^.{3,32}#[0-9]{4}$/m']
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -35,6 +37,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'username' => $input['username'],
                 'email' => $input['email'],
+                'uid' => $input['uid'],
+                'discord_id'=>$input['discord_id'],
             ])->save();
         }
     }
