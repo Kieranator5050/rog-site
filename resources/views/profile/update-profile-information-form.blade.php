@@ -82,7 +82,9 @@
             @endif
         </div>
 
-        <x-form-input field="uid" label="Arma 3 UID"></x-form-input>
+
+        <x-form-input field="uid" label="Arma 3 UID (Steam64ID Eg. 166361195132595536)"></x-form-input>
+        <a href="https://steamid.io/lookup/" class="text-blue-400">Steam64 ID Finder</a>
         <x-form-input field="discord_id" label="Discord Username (Eg. JohnDoe#1234)"></x-form-input>
     </x-slot>
 

@@ -8,11 +8,14 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+
+                <!--Table Container-->
                 <div class="flex flex-col">
                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                             <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-2">
                                 <h1 class="text-3xl text-center mb-4 mt-4 font-extrabold">USER TABLE</h1>
+                                <!--Table-->
                                 <table class="min-w-full divide-y divide-gray-200 table-auto border-collapse border border-grey-500">
                                     <thead>
                                         <tr>
@@ -32,45 +35,11 @@
                                     <tbody class="bg-white divide-y divide-gray-200">
                                     @foreach ($users as $user)
                                         <tr>
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $user->username }}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $user->discord_id }}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $user->uid }}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $user->opCount }}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{{ $user->balance }}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <x-tables.table-data-regular :data="$user->username"></x-tables.table-data-regular>
+                                            <x-tables.table-data-regular :data="$user->discord_id"></x-tables.table-data-regular>
+                                            <x-tables.table-data-regular :data="$user->uid"></x-tables.table-data-regular>
+                                            <x-tables.table-data-regular :data="$user->opCount"></x-tables.table-data-regular>
+                                            <x-tables.table-data-regular :data="$user->balance"></x-tables.table-data-regular>
 
                                             @php
                                                 $tfArray = [
@@ -78,58 +47,19 @@
                                                     1=>'<i class="fa-solid fa-check text-green-500"></i>'
                                                     ]
                                             @endphp
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{!! $tfArray[$user->isActive] !!}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <x-tables.table-data-escaped :data="$tfArray[$user->isActive]"></x-tables.table-data-escaped>
+                                            <x-tables.table-data-escaped :data="$tfArray[$user->isLocked]"></x-tables.table-data-escaped>
+                                            <x-tables.table-data-escaped :data="$tfArray[$user->isAdmin]"></x-tables.table-data-escaped>
+                                            <x-tables.table-data-escaped :data="$tfArray[$user->isTeamLead]"></x-tables.table-data-escaped>
+                                            <x-tables.table-data-escaped :data="$tfArray[$user->isQuartermaster]"></x-tables.table-data-escaped>
+                                            <x-tables.table-data-escaped :data="$tfArray[$user->isMissionMaker]"></x-tables.table-data-escaped>
 
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{!! $tfArray[$user->isLocked] !!}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{!! $tfArray[$user->isAdmin] !!}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{!! $tfArray[$user->isTeamLead] !!}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{!! $tfArray[$user->isQuartermaster] !!}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
-                                            <td class="px-6 py-4 whitespace-nowrap ">
-                                                <div class="flex items-center">
-                                                    <div class="text-sm font-medium text-gray-900">
-                                                        <p>{!! $tfArray[$user->isMissionMaker] !!}</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-
+                                            <!--Edit-->
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <a href="/admin/user/{{ $user->id }}" class="text-blue-500 hover:text-blue-600">Edit</a>
                                             </td>
 
+                                            <!--Delete-->
                                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                 <form method="POST" action="/admin/user/{{ $user->id }}">
                                                     @csrf
@@ -149,6 +79,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
