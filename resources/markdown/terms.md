@@ -1,6 +1,3 @@
-# Terms of Service
-
-
 <h2 style="text-align: center;"><b>TERMS AND CONDITIONS</b></h2>
 <p>Last updated: 2022-07-22</p>
 <p>1. <b>Introduction</b></p>

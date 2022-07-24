@@ -1,6 +1,3 @@
-# Privacy Policy
-
-
 <h2 style="text-align: center;"><b>PRIVACY POLICY</b></h2>
 <p>Effective date: 2022-07-06</p>
 <p>1. <b>Introduction</b></p>

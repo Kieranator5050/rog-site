@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,12 @@ Route::middleware([
 });
 
 Route::middleware('can:Admin')->group(function (){
+    //Admin Routes
     Route::get('/admin',[AdminController::class, 'index'])->name('admin');
+
+    //Admin User Routes
+    Route::get('/admin/users',[AdminUserController::class,'index'])->name('admin/users');
+    Route::delete('admin/users/{user}',[AdminUserController::class, 'destroy']);
+    Route::get('/admin/users/{user}/edit',[AdminUserController::class,'edit']);
+    Route::patch('/admin/users/{user}',[AdminUserController::class, 'update']);
 });
