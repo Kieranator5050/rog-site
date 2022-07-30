@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             'username'=>'Kieran',
            'email'=>'kieranjag@hotmail.com',
            'password'=> bcrypt('password'),
-            'isAdmin'=>'1'
+            'isAdmin'=>'1',
+            'isMissionMaker'=>'1'
         ]));
 
         //Create Types

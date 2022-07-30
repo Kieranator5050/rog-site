@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('operation_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->boolean('hasLifeInsurance')->default(0);
         });
     }
 

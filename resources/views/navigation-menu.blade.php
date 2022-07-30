@@ -15,10 +15,17 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+
                     @can('Admin')
-                    <x-jet-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
-                        {{ __('Admin Dashboard') }}
-                    </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+                            {{ __('Admin Dashboard') }}
+                        </x-jet-nav-link>
+                    @endcan
+
+                    @can('MissionMaker')
+                        <x-jet-nav-link href="{{ route('missions') }}" :active="request()->routeIs('missions')">
+                            {{ __('Mission Maker Dashboard') }}
+                        </x-jet-nav-link>
                     @endcan
                 </div>
             </div>
@@ -146,9 +153,14 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
             @can('Admin')
-            <x-jet-responsive-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
-                {{ __('Admin Dashboard') }}
-            </x-jet-responsive-nav-link>
+                <x-jet-responsive-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
+                    {{ __('Admin Dashboard') }}
+                </x-jet-responsive-nav-link>
+            @endcan
+            @can('MissionMaker')
+                <x-jet-responsive-nav-link href="{{ route('missions') }}" :active="request()->routeIs('missions')">
+                    {{ __('Mission Maker Dashboard') }}
+                </x-jet-responsive-nav-link>
             @endcan
         </div>
 

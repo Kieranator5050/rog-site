@@ -19,7 +19,7 @@ class OperationFactory extends Factory
     {
         return [
             'name'=>$this->faker->sentence('3'),
-            'op_date'=>$this->faker->dateTime('+10 years'),
+            'op_date'=>$this->faker->dateTime(),
             'description'=>$this->faker->randomHtml(),
             'operation_type_id'=>OperationType::factory(),
             'isCompleted'=>random_int(0,1)
