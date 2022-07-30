@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->timestamp('op_date');
+            $table->timestamp('op_date')->nullable();
             $table->text('description');
             $table->foreignId('operation_type_id')->constrained();
             $table->boolean('isCompleted');
