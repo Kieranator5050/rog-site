@@ -23,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var string[]
      */
-    protected $guarded = ['id'];//Cannot be mass assigned
+    protected $guarded = [''];//Cannot be mass assigned
 
     /**
      * The attributes that should be hidden for serialization.

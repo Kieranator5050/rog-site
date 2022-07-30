@@ -5,7 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Operation;
 use App\Models\OperationType;
-use App\Models\OperationUser;
+use App\Models\OperationRegistrations;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,13 +19,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //Create users
-        User::factory()->create([
+        $users = User::factory(40)->create();
+        $users->push(User::factory()->create([
             'username'=>'Kieran',
            'email'=>'kieranjag@hotmail.com',
            'password'=> bcrypt('password'),
             'isAdmin'=>'1'
-        ]);
-        $users = User::factory(40)->create();
+        ]));
 
         //Create Types
         $types = collect();
@@ -56,7 +56,7 @@ class DatabaseSeeder extends Seeder
         foreach ($ops as $op){
             for($i = 0; $i < random_int(5,30); $i++)
             {
-                OperationUser::factory()->create([
+                OperationRegistrations::factory()->create([
                     'operation_id'=>$op->id,
                     'user_id'=>$users->random()
                 ]);
