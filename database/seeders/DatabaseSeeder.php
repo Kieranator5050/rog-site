@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
     {
         //Create users
         $users = User::factory(40)->create();
+
+        //All Permissions
         $users->push(User::factory()->create([
             'username'=>'Kieran',
            'email'=>'kieranjag@hotmail.com',
@@ -28,6 +30,7 @@ class DatabaseSeeder extends Seeder
             'isAdmin'=>'1',
             'isMissionMaker'=>'1'
         ]));
+        //Regular User
         $users->push(User::factory()->create([
             'username'=>'Kieran2',
             'email'=>'kieranjag2@hotmail.com',
@@ -37,7 +40,10 @@ class DatabaseSeeder extends Seeder
         //Create Types
         $types = collect();
         $types->push(OperationType::factory()->create([
-            'name'=>'Standard'
+            'name'=>'Contract'
+        ]));
+        $types->push(OperationType::factory()->create([
+            'name'=>'Event'
         ]));
         $types->push(OperationType::factory()->create([
             'name'=>'Special'
@@ -45,18 +51,12 @@ class DatabaseSeeder extends Seeder
 
         //Create Operations
         $ops = collect();
-        for ($i = 0; $i < 100; $i++) {
-            if($i<5){
-                $ops->push(Operation::factory()->create([
-                    'operation_type_id'=>$types->random(),
-                    'isCompleted'=>0
-                ]));
-            } else {
-                $ops->push(Operation::factory()->create([
-                    'operation_type_id'=>$types->random(),
-                    'isCompleted'=>1
-                ]));
-            }
+        for ($i = 0; $i < 100; $i++)
+        {
+            $ops->push(Operation::factory()->create([
+                'operation_type_id'=>$types->random(),
+                'isCompleted'=>1
+            ]));
         }
 
         //Assign Players to operations
@@ -75,7 +75,6 @@ class DatabaseSeeder extends Seeder
             }
 
         }
-        //dd($types);
 
     }
 }
