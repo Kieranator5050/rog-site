@@ -33,7 +33,9 @@ class OperationController extends Controller
 
     public function show(Operation $operation)
     {
-        return "Test";
+        return view('operations.show',[
+            'operation'=>$operation
+        ]);
     }
 
     public function create()

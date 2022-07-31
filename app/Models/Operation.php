@@ -23,4 +23,14 @@ class Operation extends Model
     {
         return $this->belongsTo(OperationType::class,'operation_type_id','id');
     }
+
+    public function registration()
+    {
+        return $this->hasOne(OperationUser::class);
+    }
+
+    public function users()
+    {
+        return $this->hasManyThrough('');
+    }
 }

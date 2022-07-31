@@ -5,9 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Operation;
 use App\Models\OperationType;
-use App\Models\OperationRegistrations;
+use App\Models\OperationUser;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use PHPUnit\Exception;
 
 class DatabaseSeeder extends Seeder
 {
@@ -57,10 +58,15 @@ class DatabaseSeeder extends Seeder
         foreach ($ops as $op){
             for($i = 0; $i < random_int(5,30); $i++)
             {
-                OperationRegistrations::factory()->create([
-                    'operation_id'=>$op->id,
-                    'user_id'=>$users->random()
-                ]);
+                $user = $users->random();
+                if(!OperationUser::query()->where('operation_id','=',$op->id)->where('user_id','=',$user->id)->exists())
+                {
+                    OperationUser::factory()->create([
+                        'operation_id'=>$op->id,
+                        'user_id'=>$user->id
+                    ]);
+                }
+
             }
 
         }

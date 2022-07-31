@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('operation_registrations', function (Blueprint $table) {
-            $table->id();
+        Schema::create('operation_user', function (Blueprint $table) {
             $table->timestamps();
             $table->foreignId('operation_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->boolean('hasLifeInsurance')->default(0);
+            $table->primary(['operation_id','user_id']);
         });
     }
 

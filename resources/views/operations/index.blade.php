@@ -5,7 +5,7 @@
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg p-2">
                     <h1 class="text-3xl text-center mb-4 mt-4 font-extrabold">OPERATION TABLE</h1>
-                    <div class="mx-36 p-2 border border-gray-900 bg-gray-700 text-white text-base text-center hover:bg-gray-900">
+                    <div class="mx-36 p-2 border border-gray-900 bg-gray-700 text-white text-base text-center hover:bg-gray-900 rounded-lg">
                         <ul>
                             <li><i class="fa-solid fa-circle-info text-2xl"></i></li>
                             <li>Click the <strong>icon( <i class="fa-solid fa-xmark text-red-500"></i> | <i class="fa-solid fa-check text-green-500"></i> )</strong> under completed to change the completed status</li>
