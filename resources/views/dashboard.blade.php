@@ -64,55 +64,60 @@
                                                             <div class="container flex flex-wrap items-center">
                                                                 <div class="relative mx-auto p-2 mb-3 mt-2 border border-gray-900 bg-gray-800 text-white text-base text-center hover:bg-gray-900 rounded-lg">
                                                                     <ul>
-                                                                        @if($operation_user
-                                                                            ->where('operation_id','=',$operation->id)
-                                                                            ->where('user_id','=',auth()->user()->id)
-                                                                            ->exists())
+                                                                        @if(!$operation->isCompleted)
                                                                             @if($operation_user
                                                                                 ->where('operation_id','=',$operation->id)
                                                                                 ->where('user_id','=',auth()->user()->id)
-                                                                                ->where('hasLifeInsurance','=',1)
                                                                                 ->exists())
-                                                                                <li><i class="fa-solid fa-check-to-slot text-4xl text-green-500"></i></li>
-                                                                                <li class="text-green-400">Already Registered!</li>
-                                                                                <li class="text-green-400">Life Insurance Equipped!</li>
-                                                                                <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}/unregister">
-                                                                                    @csrf
-                                                                                    <x-jet-button class="bg-red-800 hover:bg-red-700 my-1">
-                                                                                        {{ __("Unregister") }}
-                                                                                    </x-jet-button>
-                                                                                </form>
+                                                                                @if($operation_user
+                                                                                    ->where('operation_id','=',$operation->id)
+                                                                                    ->where('user_id','=',auth()->user()->id)
+                                                                                    ->where('hasLifeInsurance','=',1)
+                                                                                    ->exists())
+                                                                                    <li><i class="fa-solid fa-check-to-slot text-4xl text-green-500"></i></li>
+                                                                                    <li class="text-green-400">Already Registered!</li>
+                                                                                    <li class="text-green-400">Life Insurance Equipped!</li>
+                                                                                    <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}/unregister">
+                                                                                        @csrf
+                                                                                        <x-jet-button class="bg-red-800 hover:bg-red-700 my-1">
+                                                                                            {{ __("Unregister") }}
+                                                                                        </x-jet-button>
+                                                                                    </form>
+                                                                                @else
+                                                                                    <li><i class="fa-solid fa-triangle-exclamation text-4xl text-amber-600"></i></li>
+                                                                                    <li class="text-green-400">Already Registered!</li>
+                                                                                    <li class="text-xs text-amber-400">No Life Insurance Equipped!</li>
+                                                                                    <li class="text-xs text-amber-400">Buy some now or risk losing your gear after a death!</li>
+                                                                                    <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}">
+                                                                                        @csrf
+                                                                                        <input type="hidden" id="updateLifeInsurance" name="updateLifeInsurance" value="1">
+                                                                                        <x-jet-button class="bg-green-800 hover:bg-green-700 my-1">
+                                                                                            {{ __("\$1000") }}
+                                                                                        </x-jet-button>
+                                                                                    </form>
+                                                                                    <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}/unregister">
+                                                                                        @csrf
+                                                                                        <x-jet-button class="bg-red-800 hover:bg-red-700 my-1">
+                                                                                            {{ __("Unregister") }}
+                                                                                        </x-jet-button>
+                                                                                    </form>
+                                                                                @endif
                                                                             @else
-                                                                                <li><i class="fa-solid fa-triangle-exclamation text-4xl text-amber-600"></i></li>
-                                                                                <li class="text-green-400">Already Registered!</li>
-                                                                                <li class="text-xs text-amber-400">No Life Insurance Equipped!</li>
-                                                                                <li class="text-xs text-amber-400">Buy some now or risk losing your gear after a death!</li>
+                                                                                <li><i class="fa-solid fa-circle-info text-2xl"></i></li>
                                                                                 <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}">
                                                                                     @csrf
-                                                                                    <input type="hidden" id="updateLifeInsurance" name="updateLifeInsurance" value="1">
                                                                                     <x-jet-button class="bg-green-800 hover:bg-green-700 my-1">
-                                                                                        {{ __("\$1000") }}
+                                                                                        {{ __("Register") }}
                                                                                     </x-jet-button>
-                                                                                </form>
-                                                                                <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}/unregister">
-                                                                                    @csrf
-                                                                                    <x-jet-button class="bg-red-800 hover:bg-red-700 my-1">
-                                                                                        {{ __("Unregister") }}
-                                                                                    </x-jet-button>
+                                                                                    <div class="">
+                                                                                        <p class="inline font-extrabold">Life Insurance</p>
+                                                                                        <x-jet-checkbox class="border border-red-500 p-2 ml-2" name="hasLifeInsurance"></x-jet-checkbox>
+                                                                                    </div>
                                                                                 </form>
                                                                             @endif
                                                                         @else
-                                                                            <li><i class="fa-solid fa-circle-info text-2xl"></i></li>
-                                                                            <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}">
-                                                                                @csrf
-                                                                                <x-jet-button class="bg-green-800 hover:bg-green-700 my-1">
-                                                                                    {{ __("Register") }}
-                                                                                </x-jet-button>
-                                                                                <div class="">
-                                                                                    <p class="inline font-extrabold">Life Insurance</p>
-                                                                                    <x-jet-checkbox class="border border-red-500 p-2 ml-2" name="hasLifeInsurance"></x-jet-checkbox>
-                                                                                </div>
-                                                                            </form>
+                                                                            <li><i class="fa-solid fa-ban text-4xl text-red-500"></i></li>
+                                                                            <li class="text-sm text-amber-400">Operation is Cancelled\Completed</li>
                                                                         @endif
                                                                     </ul>
                                                                 </div>
