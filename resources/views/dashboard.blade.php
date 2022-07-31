@@ -37,29 +37,41 @@
                                     </ul>
                                 </div>
 
-                                <div class="mt-3">
+
+                                <!--Upcoming Ops Container-->
+                                <div class="container mx-auto p-6 border border-gray-300 mt-2 shadow-lg">
                                     @if(!$operations->isEmpty())
-                                        <h1>Upcoming Ops</h1>
-                                        <div class="flex items-center flex-col mx-24 p-2">
+                                        <h1 class="text-3xl font-extrabold">Upcoming Ops</h1>
+                                        <div class="flex items-stretch -mx-4">
                                             @foreach($operations as $operation)
-                                                <div class="p-6 mx-2 my-2 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                                                    <a href="/operations/{{ $operation->id }}">
-                                                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $operation->name }}</h5>
-                                                    </a>
-                                                    <p class="text-orange-600">{{ $operation->op_date->diffForHumans() }}</p>
-                                                    <p class="text-orange-400 my-2">Type : {{ $operation->type->name }}</p>
-                                                    <a href="/operations/{{ $operation->id }}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                        View Details
-                                                        <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                            <div class="flex-1 p-4">
+                                                <div class="block bg-gray-800 hover:bg-gray-900 overflow-hidden border-2 h-full relative rounded-lg">
+                                                    <a href="/operations/{{ $operation->id }}" class="after:absolute after:inset-0">
+                                                        <div class="p-4">
+                                                            <a href="/operations/{{ $operation->id }}">
+                                                                <h2 class="mt-2 mb-2 text-2xl font-bold font-Heading tracking-tight text-gray-900 dark:text-white">{{ $operation->name }}</h2>
+                                                            </a>
+                                                            <p class="text-orange-600">{{ $operation->op_date->diffForHumans() }}</p>
+                                                            <p class="text-orange-400">{{ date('g:i a', strtotime($operation->op_date)) }}</p>
+                                                            <p class="text-orange-400 my-1">Type : {{ $operation->type->name }}</p>
+                                                        </div>
+                                                        <div class="p-4 flex flex-wrap items-center">
+                                                            <a href="/operations/{{ $operation->id }}" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                                Click to View Details
+                                                                <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                                                            </a>
+                                                        </div>
                                                     </a>
                                                 </div>
+                                            </div>
                                             @endforeach
-                                            {{ $operations->links() }}
                                         </div>
+                                    {{ $operations->links() }}
                                     @else
-
+                                        <h1>NO OPERATIONS POSTED</h1>
                                     @endif
                                 </div>
+
 
                             </div>
                         </div>
