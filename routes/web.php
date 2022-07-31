@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,12 +26,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard',[
-            'operations'=>\App\Models\Operation::query()->latest()->where('isCompleted','=','0')->paginate(3),
-            'operation_user' => \App\Models\OperationUser::query()
-        ]);
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('/dashboard/rules',[DashboardController::class,'rules'])->name('dashboard/rules');
 
     //ROUTES THAT LOGGED IN USERS SHOULD SEE WITHOUT NEEDING PERMISSIONS
     //Operation Show Routes
