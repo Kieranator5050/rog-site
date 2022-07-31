@@ -28,6 +28,11 @@ class DatabaseSeeder extends Seeder
             'isAdmin'=>'1',
             'isMissionMaker'=>'1'
         ]));
+        $users->push(User::factory()->create([
+            'username'=>'Kieran2',
+            'email'=>'kieranjag2@hotmail.com',
+            'password'=> bcrypt('password'),
+        ]));
 
         //Create Types
         $types = collect();

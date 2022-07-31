@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Operation;
 use App\Models\OperationType;
+use App\Models\OperationUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -24,6 +26,14 @@ class OperationController extends Controller
         return back();
     }
 
+    public function unregister(Operation $operation, User $user)
+    {
+        OperationUser::query()->where('user_id','=',$user->id)->where('operation_id','=',$operation->id)->delete();
+        request()->session()->flash('flash.banner', "Unregistered $user->username from $operation->name");
+        request()->session()->flash('flash.bannerStyle', "success");
+        return back();
+    }
+
     public function index()
     {
         return view('operations.index',[
@@ -34,7 +44,8 @@ class OperationController extends Controller
     public function show(Operation $operation)
     {
         return view('operations.show',[
-            'operation'=>$operation
+            'operation'=>$operation,
+            'users'=>$operation->users->paginate(20)
         ]);
     }
 

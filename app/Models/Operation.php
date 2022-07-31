@@ -31,6 +31,6 @@ class Operation extends Model
 
     public function users()
     {
-        return $this->hasManyThrough('');
+        return $this->belongsToMany(User::class)->withPivot('hasLifeInsurance');
     }
 }

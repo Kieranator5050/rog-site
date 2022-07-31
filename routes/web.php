@@ -43,6 +43,9 @@ Route::middleware('can:Admin')->group(function (){
     Route::delete('admin/users/{user}',[AdminUserController::class, 'destroy']);
     Route::get('/admin/users/{user}/edit',[AdminUserController::class,'edit']);
     Route::patch('/admin/users/{user}',[AdminUserController::class, 'update']);
+
+    //Operation Unregister Route
+    Route::post('/operations/{operation}/user/{user}/unregister',[OperationController::class,'unregister']);
 });
 
 //Mission Maker Group
@@ -54,4 +57,5 @@ Route::middleware('can:MissionMaker')->group(function(){
     Route::get('/operation/create',[OperationController::class,'create']);
     Route::post('/operations',[OperationController::class,'store']);
     Route::post('/operations/{operation}/complete',[OperationController::class,'complete']);
+
 });

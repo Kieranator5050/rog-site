@@ -55,13 +55,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function registrations()
-    {
-        $this->hasMany(OperationUser::class);
-    }
-
     public function operations()
     {
-        $this->belongsToMany();
+        $this->belongsToMany(Operation::class)->withPivot('hasLifeInsurance');
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -28,6 +31,17 @@ class AppServiceProvider extends ServiceProvider
     {
         //Fixing deployment string length issue
         Schema::defaultStringLength(191);
+
+        //Adding paginate method to collection
+        if (!Collection::hasMacro('paginate')) {
+            Collection::macro('paginate',
+                function ($perPage = 15, $page = null, $options = []) {
+                    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+                    return (new LengthAwarePaginator(
+                        $this->forPage($page, $perPage), $this->count(), $perPage, $page, $options))
+                        ->withPath('');
+                });
+        }
 
         /*
          * Authorization Roles Definitions
