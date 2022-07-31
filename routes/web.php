@@ -26,10 +26,17 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        return view('dashboard',[
+            'operations'=>\App\Models\Operation::query()->latest()->where('isCompleted','=','0')->paginate(3)
+        ]);
     })->name('dashboard');
 
+    //ROUTES THAT LOGGED IN USERS SHOULD SEE WITHOUT NEEDING PERMISSIONS
+    //Operation Show Routes
     Route::get('/operations/{operation}',[OperationController::class, 'show']);
+    //Operation Register\Unregister Routes
+    Route::post('/operations/{operation}/user/{user}/unregister',[OperationController::class,'unregister']);
+    Route::post('/operations/{operation}/user/{user}',[OperationController::class,'signup']);
 });
 
 
@@ -44,8 +51,7 @@ Route::middleware('can:Admin')->group(function (){
     Route::get('/admin/users/{user}/edit',[AdminUserController::class,'edit']);
     Route::patch('/admin/users/{user}',[AdminUserController::class, 'update']);
 
-    //Operation Unregister Route
-    Route::post('/operations/{operation}/user/{user}/unregister',[OperationController::class,'unregister']);
+
 });
 
 //Mission Maker Group

@@ -8,16 +8,60 @@
                 @endcan
             </div>
 
+            <div>
+                <div class="text-center">
+                    <div class="mx-36 p-2 mb-3 mt-2 border border-gray-900 bg-gray-800 text-white text-base text-center hover:bg-gray-900 rounded-lg">
+                        <ul>
 
-            <div class="p-2 border border-gray-300">
-                <h1 class="text-2xl font-extrabold text-center mb-4">{{ $operation->name }}</h1>
-                <div class="text-base">
-                    {!! $operation->description !!}
+                            @if($isRegistered)
+                                @if($hasLifeInsurance)
+                                    <li><i class="fa-solid fa-check-to-slot text-4xl text-green-500"></i></li>
+                                    <li class="text-green-400">Already Registered!</li>
+                                    <li class="text-green-400">Life Insurance Equipped!</li>
+                                @else
+                                    <li><i class="fa-solid fa-triangle-exclamation text-4xl text-amber-600"></i></li>
+                                    <li class="text-green-400">Already Registered!</li>
+                                    <li class="text-xs text-amber-400">No Life Insurance Equipped!</li>
+                                    <li class="text-xs text-amber-400">Buy some now or risk losing your gear after a death!</li>
+                                    <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}">
+                                        @csrf
+                                        <input type="hidden" id="updateLifeInsurance" name="updateLifeInsurance" value="1">
+                                        <x-jet-button class="bg-green-800 hover:bg-green-700 my-1">
+                                            {{ __("Purchase Life Insurance") }}
+                                        </x-jet-button>
+                                    </form>
+                                @endif
+                            @else
+                                <li><i class="fa-solid fa-circle-info text-2xl"></i></li>
+                                <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}">
+                                    @csrf
+                                    <x-jet-button class="bg-green-800 hover:bg-green-700 my-1">
+                                        {{ __("Register") }}
+                                    </x-jet-button>
+                                    <div class="">
+                                        <p class="inline font-extrabold">Life Insurance</p>
+                                        <x-jet-checkbox class="border border-red-500 p-2 ml-2" name="hasLifeInsurance"></x-jet-checkbox>
+                                    </div>
+                                </form>
+                            @endif
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mx-24 my-8">
+                <div class="p-2 border border-gray-300">
+                    <div><h1 class="text-2xl font-extrabold text-left mb-4">{{ $operation->name }}</h1></div>
+                    <div class="text-base">
+                        {!! $operation->description !!}
+                    </div>
                 </div>
             </div>
 
 
+
             <div class="p-2 border border-gray-300">
+
                 <!--Table-->
                 <h1 class="text-2xl font-extrabold text-center">Attendees</h1>
                 <table class="min-w-full divide-y divide-gray-200 table-auto border-collapse border border-grey-500">
@@ -28,7 +72,7 @@
                             <th></th>
                         @endcan
                         <th class="border border-gray-300 text-left">Username</th>
-                        <th class="border border-gray-30 text-left">Life Insurance</th>
+                        <th class="border border-gray-300 text-left">Life Insurance</th>
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">

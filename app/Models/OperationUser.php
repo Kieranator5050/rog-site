@@ -9,4 +9,5 @@ class OperationUser extends Model
 {
     use HasFactory;
     protected $table = 'operation_user';
+    protected $guarded = [];
 }

@@ -34,6 +34,51 @@ class OperationController extends Controller
         return back();
     }
 
+    public function signup(Request $request, Operation $operation, User $user)
+    {
+        //Check if adding life insurance to already existing registration
+        if(!$request['updateLifeInsurance']??false){
+
+            //Check if attempting to sign up as another user
+            if(auth()->user()->id != $user->id){
+                request()->session()->flash('flash.banner', "No");
+                request()->session()->flash('flash.bannerStyle', "danger");
+                return back();
+            }
+
+            //Create the registration
+            if($request['hasLifeInsurance'] ?? false){
+                OperationUser::create([
+                    'operation_id'=>$operation->id,
+                    'user_id'=>$user->id,
+                    'hasLifeInsurance'=>1
+                ]);
+                request()->session()->flash('flash.banner', "Registered for $operation->name successfully with life insurance");
+            } else {
+                OperationUser::create([
+                    'operation_id'=>$operation->id,
+                    'user_id'=>$user->id,
+                    'hasLifeInsurance'=>0
+                ]);
+                request()->session()->flash('flash.banner', "Registered for $operation->name successfully");
+            }
+        } else {
+            //Update life insurance
+            OperationUser::query()
+                            ->where('user_id','=',$user->id)
+                            ->where('operation_id','=',$operation->id)
+                            ->update([
+                                'hasLifeInsurance'=>1
+                            ]);
+            request()->session()->flash('flash.banner', "Purchased Life Insurance Successfully!}");
+        }
+
+
+
+        request()->session()->flash('flash.bannerStyle', "success");
+        return back();
+    }
+
     public function index()
     {
         return view('operations.index',[
@@ -45,7 +90,18 @@ class OperationController extends Controller
     {
         return view('operations.show',[
             'operation'=>$operation,
-            'users'=>$operation->users->paginate(20)
+            'users'=>$operation->users->paginate(20),
+
+            'isRegistered'=>OperationUser::query()
+                                            ->where('operation_id','=',$operation->id)
+                                            ->where('user_id','=',auth()->user()->id)
+                                            ->exists(),
+
+            'hasLifeInsurance'=>OperationUser::query()
+                                            ->where('operation_id','=',$operation->id)
+                                            ->where('user_id','=',auth()->user()->id)
+                                            ->where('hasLifeInsurance','=',1)
+                                            ->exists()
         ]);
     }
 
