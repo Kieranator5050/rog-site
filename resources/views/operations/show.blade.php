@@ -12,12 +12,17 @@
                 <div class="text-center">
                     <div class="mx-36 p-2 mb-3 mt-2 border border-gray-900 bg-gray-800 text-white text-base text-center hover:bg-gray-900 rounded-lg">
                         <ul>
-
                             @if($isRegistered)
                                 @if($hasLifeInsurance)
                                     <li><i class="fa-solid fa-check-to-slot text-4xl text-green-500"></i></li>
                                     <li class="text-green-400">Already Registered!</li>
                                     <li class="text-green-400">Life Insurance Equipped!</li>
+                                    <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}/unregister">
+                                        @csrf
+                                        <x-jet-button class="bg-red-800 hover:bg-red-700 my-1">
+                                            {{ __("Unregister") }}
+                                        </x-jet-button>
+                                    </form>
                                 @else
                                     <li><i class="fa-solid fa-triangle-exclamation text-4xl text-amber-600"></i></li>
                                     <li class="text-green-400">Already Registered!</li>
@@ -27,7 +32,13 @@
                                         @csrf
                                         <input type="hidden" id="updateLifeInsurance" name="updateLifeInsurance" value="1">
                                         <x-jet-button class="bg-green-800 hover:bg-green-700 my-1">
-                                            {{ __("Purchase Life Insurance") }}
+                                            {{ __("\$1000") }}
+                                        </x-jet-button>
+                                    </form>
+                                    <form method="POST" action="/operations/{{ $operation->id }}/user/{{ auth()->user()->id }}/unregister">
+                                        @csrf
+                                        <x-jet-button class="bg-red-800 hover:bg-red-700 my-1">
+                                            {{ __("Unregister") }}
                                         </x-jet-button>
                                     </form>
                                 @endif

@@ -28,7 +28,20 @@ class OperationController extends Controller
 
     public function unregister(Operation $operation, User $user)
     {
-        OperationUser::query()->where('user_id','=',$user->id)->where('operation_id','=',$operation->id)->delete();
+        //Check if user is trying to unregister another user
+        if(request()->user()->cannot('Admin')){
+            //Unregister Self
+            if(auth()->user()->id == $user->id){
+                OperationUser::query()->where('user_id','=',$user->id)->where('operation_id','=',$operation->id)->delete();
+            } else {
+                request()->session()->flash('flash.banner', "No");
+                request()->session()->flash('flash.bannerStyle', "danger");
+                return back();
+            }
+        } else {
+            OperationUser::query()->where('user_id','=',$user->id)->where('operation_id','=',$operation->id)->delete();
+        }
+
         request()->session()->flash('flash.banner', "Unregistered $user->username from $operation->name");
         request()->session()->flash('flash.bannerStyle', "success");
         return back();
