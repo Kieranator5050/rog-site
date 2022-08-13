@@ -11,6 +11,11 @@
             <div>
                 <div class="text-center">
                     <div class="mx-36 p-2 mb-3 mt-2 border border-gray-900 bg-gray-800 text-white text-base text-center hover:bg-gray-900 rounded-lg">
+                        <div class="mx-auto text-center mb-4">
+                            <i class="fa-solid fa-clock text-orange-600 text-2xl"></i>
+                            <p class="text-orange-500 text-sm">{{ $operation->op_date->diffForHumans() }}</p>
+                            <p class="text-orange-500 text-sm">{{ date('g:i a e', strtotime($operation->op_date)) }}</p>
+                        </div>
                         <ul>
                             @if(!$operation->isCompleted)
                                 @if($isRegistered)

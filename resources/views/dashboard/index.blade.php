@@ -27,7 +27,7 @@
                                         <div class="mx-auto text-center">
                                             <i class="fa-solid fa-clock text-orange-600 text-2xl"></i>
                                             <p class="text-orange-500 text-sm">{{ $operation->op_date->diffForHumans() }}</p>
-                                            <p class="text-orange-500 text-sm">{{ date('g:i a', strtotime($operation->op_date)) }}</p>
+                                            <p class="text-orange-500 text-sm">{{ date('g:i a e', strtotime($operation->op_date)) }}</p>
                                         </div>
                                     </div>
 
