@@ -95,7 +95,8 @@ class OperationController extends Controller
     public function index()
     {
         return view('operations.index',[
-            'operations'=>Operation::latest('op_date')->paginate(10)
+            'operations'=>Operation::latest('op_date')->paginate(10),
+            'operation_user'=>OperationUser::class
         ]);
     }
 

@@ -33,6 +33,7 @@
 
                                     <p class="text-orange-400 text-base">Type : {{ $operation->type->name }}</p>
 
+                                    @if($loop->first)
                                     <div class="container flex flex-wrap items-center">
                                         <div class="relative mx-auto p-2 mb-3 mt-2 border border-gray-900 bg-gray-800 text-white text-base text-center hover:bg-gray-900 rounded-lg">
                                             <ul>
@@ -94,6 +95,7 @@
                                             </ul>
                                         </div>
                                     </div>
+                                    @endif
                                 </div>
 
                                 <div class="container mb-4 flex flex-wrap items-center">
