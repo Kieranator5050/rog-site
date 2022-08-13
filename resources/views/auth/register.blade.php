@@ -17,6 +17,9 @@
                     <h4 class="font-semibold underline underline-offset-2">NOTE</h4>
                     <p class=""> Join discord <a href="https://discord.gg/szzH2GPh2X"><i class="fa-brands fa-discord text-white bg-blue-400 rounded-lg p-1"></i></a> to complete your registration or your account <em class="font-extrabold">will be deleted</em></p>
                 </div>
+                <div class="bg-red-600 p-2 rounded-md text-white text-sm mt-3 font-extrabold">
+                    <p>ENSURE YOUR REGISTERED USERNAME MATCHES YOUR ARMA AND DISCORD NAME</p>
+                </div>
                 <div class="p-2 mt-2 rounded-md text-sm">
                     <h4 class="font-semibold">NAME & PROFILE PICTURE GUIDELINES</h4>
                     <ul class="text-xs list-disc text-left">
