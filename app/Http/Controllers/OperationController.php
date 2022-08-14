@@ -29,7 +29,7 @@ class OperationController extends Controller
     public function unregister(Operation $operation, User $user)
     {
         //Check if user is trying to unregister another user
-        if(request()->user()->cannot('Admin')){
+        if(request()->user()->cannot('Quartermaster')){
             //Unregister Self
             if(auth()->user()->id == $user->id){
                 OperationUser::query()->where('user_id','=',$user->id)->where('operation_id','=',$operation->id)->delete();
